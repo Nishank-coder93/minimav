@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="input_box">
+    <h3 class="text-center"> Press the button to Process the query </h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        <label for=""> Course Number </label> <input type="text" name="course" placeholder="Add Course number"> </input>
+        <h4> OR </h4>
+        <label for=""> Instructor Name </label> <input type="text" name="instructor" placeholder="Add Instructors Name"> </input>
+        <input type="submit" value="Search" class="btn-info center-block">
+    </form>
+</div>
+<div>
+ <h3> Result returned in : </h3><h1> <span> {{ g.request_time() }} </span></h1>
+</div>
+<div class="result_box">
+{{ resultinfo }}
+</div>
+{% endblock %}
