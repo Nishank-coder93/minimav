@@ -1,0 +1,29 @@
+Id,Name,Type,Weight,Ingredients
+0,AlooGosht,Healthy,200;90;390;0,Potatoes;Tomatoes;Onions;Lamb
+1,AvocadoEgg Rolls,Mexican,300;300;700;0;0,Avocados;Cilantro;Onions;Egg roll wrappers;Eggs
+2,BatataHarra,Healthy,800;500;1080;0;0,Potatoes;Peppers;Olive oil;Garlic;Coriander
+3,BuckwheatNoodleSalad,Healthy,700;180;400,Buckwheat noodles;Pepper;Cilantro
+4,CarrotCake,Snack,700;140;950;0;0;0,Flour;Eggs;Sugar;Carrots;Almonds;Baking powder
+5,ChickenBiryani,Indian,600;800;1800,Rice;Chicken;Butter
+6,Coddle,Healthy,300;200;700;0;0;0;0,Bangers;Rashers;Potatoes;Onions;Parsley;Pepper;Salt
+7,Dolma,Healthy,150;50;300;0,Grape leaves;Rice;Lemon juice;Cucumber
+8,GreekSalad,Healthy,300;100;600;0;0;0,Tomatoes;Onions;Lemon juice;Cucumber;Olives;Cheese
+9,Hamburger,Fastfood,300;200;640;0;0;0,Hamburger buns;Pickles;Tomatoes;Onions;Ground beef;Lettuce
+10,KababBarg,Iranian,300;540;800;0;0,Onions;Olive oil;Garlic;Saffaron;Fillets of beef tenderloin
+11,Kabobkoobideh,Iranian,200;170;500;0;0,Ground beef;Ground lamb;Onions;Rice;Tomatoes
+12,Kapsalon,Healthy,460;50;400;0,Fries;Shawarma meat;Cheese;Garlic
+13,LambShank,Arabian,800;900;1780,Lamb shanks;Onions;Rosemary leaves
+14,Lasagna,Italian,500;120;200;0,Ground beef;Lasagna noodles;Tomato paste;Cheese
+15,LyonnaisePotatoes,Snack,700;400;1100;0,Potatoes;Onions;Butter;Parsley
+16,Masala,Indian,170;100;640;0;0;0;0,Chicken;Tomatoes;Curry powder;Ginger;Garlic;Butter;Cream
+17,Omelette,Healthy,400;300;740;0;0,Eggs;Butter;Tomatoes;Avocados;Salt
+18,Pizza,Italian,700;1200;2370;0;0,Pizza crust;Olive;Onions;Tomatoes;Cheese
+19,PrawnPasta,Italian,400;130;700;0;0,Prawns;Shrimps;Shaped pasta;Onions;Parsley
+20,Pretzel,Snack,350;40;820, Wheat;Salt;Flour
+21,Rollatini,Italian,800;90;1360;0,Fish;Egg plant;Flour;Ricotta
+22,SaagPaneer,Indian,130;300;460,Paneer;Spinach;Ginger
+23,ShiraziSalad,Healthy,200;50;410;0,Tomatoes;Onions;Lemon juice;Cucumber
+24,Tacos,Mexican,290;40;270;0,Ground beef;Corn tortillas;Cheese;Paprika
+25,Tiramisu,Snack,80;20;90,Whipping cream;Cocoa;Ladyfingers
+26,Tzatziki,Healthy,200;170;270,Cucumber;Yogurt;Salt
+27,VegetableSushi,Seafood,500;30;200;0;0,Rice;Nori sheets;Cucumber;Tomatoes;Avocados
