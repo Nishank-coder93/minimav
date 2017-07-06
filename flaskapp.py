@@ -32,7 +32,7 @@ def create_connection():
 @app.before_request
 def before_request():
     g.request_start_time = time.time()
-    g.request_time = lambda : "%.5f ms" % ((time.time() - g.request_start_time) * 1000)
+    g.request_time = lambda : ((time.time() - g.request_start_time) * 1000)
 
 @app.route('/', methods=['GET'])
 def view_db():
@@ -59,27 +59,120 @@ def view_contents():
 
         return render_template("query_one.html")
     elif request.method == 'POST':
-        ingredient = request.form['ingredient']
+        calo_from = request.form['cal_from']
+        calo_to = request.form['cal_to']
 
-        sql_query = 'SELECT * FROM food_data WHERE Ingredients LIKE "%{}%"'.format(ingredient)
+        ing_name =[]
+        dish_dict = {}
+        # sql_query = 'SELECT * FROM food_data WHERE Ingredients LIKE "%{}%"'.format(ingredient)
+
+        sql_query = 'SELECT * FROM food_data WHERE Cal BETWEEN {} AND {}'.format(calo_from,calo_to)
 
         # if course_num != "":
         #     sql_query = 'select * from class_data where CourseNum=' + course_num
         # else:
         #     sql_query = "select * from class_data where Instructor='" +  inst + "'"
 
+        # table_info = "<tr> <th> ID </th> <th> Name </th> <th> Type </th>  <th> Ingredients </th></tr>"
+        q_time_start = time.time()
         con = create_connection()
         cur = con.cursor()
         cur.execute(sql_query)
         results = []
         for result in cur.fetchall():
+            dishId = result[0] # Dish ID
+            name = result[1] # Name of the Dish
+            type = result[2] # Type of the Dish
+            cal = result[5] # Dish Ingredient
+
+            # table_info += "<tr><td> {} </td> <td> {} </td> <td> {} </td> <td> {} </td></tr>".format(dishId,name,type,ingre)
+            name += ".jpg"
+            ing_name.append(name)
+            dish_dict[name]= [type,cal]
+            print(result)
             results.append(result)
 
+        q_time_end = time.time()
+        q_full_time = (q_time_end - q_time_start) * 1000
         t = request.values.get('t', 0)
         time.sleep(float(t))
 
-        return render_template('query_one.html', resultinfo=results)
 
+        num_of_pictures = len(results)
+
+        return render_template('query_one.html', resultinfo=results, q_time=q_full_time,ing_name=dish_dict,num_pic=num_of_pictures)
+
+@app.route('/query2', methods=['GET','POST'])
+def view_con():
+    if request.method == 'GET':
+        t = request.values.get('t', 0)
+        time.sleep(float(t))
+
+        return render_template("query_two.html")
+    elif request.method == 'POST':
+        calo_from = request.form['cal_great']
+        ingredient = request.form['ingredient']
+
+        ing_name =[]
+        dish_dict = {}
+        # sql_query = 'SELECT * FROM food_data WHERE Ingredients LIKE "%{}%"'.format(ingredient)
+
+        #sql_query = 'SELECT * FROM food_data WHERE Cal BETWEEN {} AND {}'.format(calo_from,calo_to)
+
+        sql_query = 'SELECT * FROM food_data WHERE Cal >= {} AND Ingredients LIKE "%{}%"'.format(calo_from,ingredient)
+
+        # if course_num != "":
+        #     sql_query = 'select * from class_data where CourseNum=' + course_num
+        # else:
+        #     sql_query = "select * from class_data where Instructor='" +  inst + "'"
+
+        # table_info = "<tr> <th> ID </th> <th> Name </th> <th> Type </th>  <th> Ingredients </th></tr>"
+        q_time_start = time.time()
+        con = create_connection()
+        cur = con.cursor()
+        cur.execute(sql_query)
+        results = []
+        for result in cur.fetchall():
+            dishId = result[0] # Dish ID
+            name = result[1] # Name of the Dish
+            type = result[2] # Type of the Dish
+            cal = result[5] # Dish Ingredient
+
+            # table_info += "<tr><td> {} </td> <td> {} </td> <td> {} </td> <td> {} </td></tr>".format(dishId,name,type,ingre)
+            name += ".jpg"
+            ing_name.append(name)
+            dish_dict[name]= [type,cal]
+            print(result)
+            results.append(result)
+
+        q_time_end = time.time()
+        q_full_time = (q_time_end - q_time_start) * 1000
+        t = request.values.get('t', 0)
+        time.sleep(float(t))
+
+
+        num_of_pictures = len(results)
+
+        return render_template('query_two.html', resultinfo=results, q_time=q_full_time,ing_name=dish_dict,num_pic=num_of_pictures)
+
+
+@app.route('/topIng', methods=['GET'])
+def view_ing_page():
+    return render_template("top_que.html")
+
+@app.route('/topIng',methods=['POST'])
+def view_top_ing():
+    ing_query = "SELECT Ingredients FROM food_data"
+
+    con = create_connection()
+    cur = con.cursor()
+    cur.execute(ing_query)
+
+    ing_res = []
+    for ingres in cur.fetchall():
+        print(ingres)
+
+    return render_template("top_que.html")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
